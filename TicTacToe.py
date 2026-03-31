@@ -207,7 +207,7 @@ def redo_play_game():
             answer = input().strip().upper()
 
             if answer == 'Y':
-                print("Let's play!")
+                print("Let's play Tic-Tac-Toe!")
                 valid_input = True
             elif answer == 'N':
                 play_again = False
