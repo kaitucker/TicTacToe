@@ -192,7 +192,7 @@ def redo_play_game():
             answer = input().strip().upper()
 
             if answer == 'Y':
-                print("Let's Play!")
+                print("Let's play Tic-Tac-Toe")
                 break
             elif answer == 'N':
                 return
