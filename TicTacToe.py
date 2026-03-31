@@ -162,7 +162,7 @@ def play_game():
     """
     board = create_board()
 
-    print("Let's play Tic-Tac-Toe")
+    print("Let's play!")
     print("Player X starts!")
     print_board(board)
 
