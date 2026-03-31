@@ -72,20 +72,20 @@ def is_valid_move(board, row, col):
 def get_move(player, board):
     """
     Prompts the player for input and validates the given player move.
-    (No while True here :))
     """
+    print(f"Enter row and column for player {player}")
+
     valid_move = False
 
     while not valid_move:
-        print(f"Enter row and column for player {player}")
         user_input = input().split()
 
-        #Checks lengths of input
+        #Checks length
         if len(user_input) != 2:
             print("Please enter valid row and col numbers from 1 to 3:")
             continue
 
-        #Checks if both inputs are integers
+        #Checks if its an integer or not
         if not (user_input[0].isdigit() and user_input[1].isdigit()):
             print("Please enter valid row and col numbers from 1 to 3:")
             continue
@@ -93,18 +93,17 @@ def get_move(player, board):
         row = int(user_input[0]) - 1
         col = int(user_input[1]) - 1
 
-        #Bounds check of 1 to 3
+        #Checks to see if its within 1-3
         if row < 0 or row > 2 or col < 0 or col > 2:
             print("Please enter valid row and col numbers from 1 to 3:")
             continue
 
-        #Spots taken check
+        #Checks to see if the space is filled yet
         if board[row][col] != '_':
             print("That spot is full!")
             print("Please enter valid row and col numbers from 1 to 3:")
             continue
 
-        #If all checks pass
         valid_move = True
 
     return row, col
