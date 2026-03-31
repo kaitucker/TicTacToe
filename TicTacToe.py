@@ -62,41 +62,34 @@ def is_valid_move(board, row, col):
 def get_move(player, board):
     """
     Prompts the player for input and validates the move.
-    
-    Args:
-        player (str): current player ('X' or 'O')
-        board (list): current game board
-    
-    Returns:
-        tuple: valid (row, col) indices
     """
     while True:
+        # ALWAYS print prompt first
         print(f"Enter row and column for player {player}")
         user_input = input().split()
 
-        # Ensure exactly two inputs were given
+        # Check input length
         if len(user_input) != 2:
             print("Please enter valid row and col numbers from 1 to 3:")
             continue
 
-        # Attempt to convert input to integers
+        # Convert to integers
         try:
-            row = int(user_input[0]) - 1  # convert to 0-based index
+            row = int(user_input[0]) - 1
             col = int(user_input[1]) - 1
         except:
-            # Input was not integers
             print("Please enter valid row and col numbers from 1 to 3:")
             continue
 
-        # Validate move
-        valid, error_type = is_valid_move(board, row, col)
+        # Bounds check
+        if row < 0 or row > 2 or col < 0 or col > 2:
+            print("Please enter valid row and col numbers from 1 to 3:")
+            continue
 
-        if not valid:
-            if error_type == "bounds":
-                print("Please enter valid row and col numbers from 1 to 3:")
-            elif error_type == "full":
-                print("That spot is full!")
-                print("Please enter valid row and col numbers from 1 to 3:")
+        # Spot taken check
+        if board[row][col] != '_':
+            print("That spot is full!")
+            print("Please enter valid row and col numbers from 1 to 3:")
             continue
 
         return row, col
@@ -186,12 +179,17 @@ def play_game():
 def redo_play_game():
     """
     Controls replay functionality.
-    Repeats the game until user chooses 'N'.
     """
-    while True:
-        play_game()
+    first_game = True
 
-        # Ask user if they want to play again
+    while True:
+        if first_game:
+            play_game()
+            first_game = False
+        else:
+            # DO NOT print intro again
+            play_game()
+
         while True:
             print("Do you want to play again? Y or N")
             answer = input().strip().upper()
