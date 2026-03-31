@@ -64,35 +64,32 @@ def get_move(player, board):
     Prompts the player for input and validates the move.
     """
     while True:
-        # ALWAYS print prompt first
         print(f"Enter row and column for player {player}")
-        user_input = input().split()
+        
+        while True:
+            user_input = input().split()
 
-        # Check input length
-        if len(user_input) != 2:
-            print("Please enter valid row and col numbers from 1 to 3:")
-            continue
+            if len(user_input) != 2:
+                print("Please enter valid row and col numbers from 1 to 3:")
+                continue
 
-        # Convert to integers
-        try:
-            row = int(user_input[0]) - 1
-            col = int(user_input[1]) - 1
-        except:
-            print("Please enter valid row and col numbers from 1 to 3:")
-            continue
+            try:
+                row = int(user_input[0]) - 1
+                col = int(user_input[1]) - 1
+            except:
+                print("Please enter valid row and col numbers from 1 to 3:")
+                continue
 
-        # Bounds check
-        if row < 0 or row > 2 or col < 0 or col > 2:
-            print("Please enter valid row and col numbers from 1 to 3:")
-            continue
+            if row < 0 or row > 2 or col < 0 or col > 2:
+                print("Please enter valid row and col numbers from 1 to 3:")
+                continue
 
-        # Spot taken check
-        if board[row][col] != '_':
-            print("That spot is full!")
-            print("Please enter valid row and col numbers from 1 to 3:")
-            continue
+            if board[row][col] != '_':
+                print("That spot is full!")
+                print("Please enter valid row and col numbers from 1 to 3:")
+                continue
 
-        return row, col
+            return row, col
 
 
 def check_win(board, player):
@@ -195,6 +192,7 @@ def redo_play_game():
             answer = input().strip().upper()
 
             if answer == 'Y':
+                print("Let's Play!")
                 break
             elif answer == 'N':
                 return
