@@ -1,10 +1,15 @@
 def print_intro():
     """
-    Prints the introduction and instructions for Tic-Tac-Toe.
+    Prints the introduction and example board.
     """
     print("Let's play Tic-Tac-Toe!")
     print("When prompted, enter desired row and column numbers")
     print("Example: 1 3")
+
+    #Example board
+    print("| _ | _ | X |")
+    print("| _ | _ | _ |")
+    print("| _ | _ | _ |")
 
 
 def create_board():
@@ -210,4 +215,3 @@ def main():
 # Ensures main() runs only when script is executed directly
 if __name__ == "__main__":
     main()
-
